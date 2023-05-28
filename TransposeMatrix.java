@@ -9,15 +9,30 @@ public class TransposeMatrix {
             System.out.println();
         }
     }
-    static int[][] findTranspose(int matrix[][] , int r , int c){
-        int ans [][] = new int [c][r];
 
+    // method to transpose of matrix with creating a new answer array
+
+    // static int[][] findTranspose(int matrix[][] , int r , int c){
+    //     int ans [][] = new int [c][r];
+
+    //     for(int i=0 ; i<c ; i++){
+    //         for(int j=0 ; j<r ; j++){
+    //             ans[i][j] = matrix[j][i];
+    //         }
+    //     }
+    //     return ans;
+    // }
+
+    // method to transpose of matrix without creating a new answer array
+    static void findTransposeInplace(int matrix[][] , int r , int c){
         for(int i=0 ; i<c ; i++){
             for(int j=0 ; j<r ; j++){
-                ans[i][j] = matrix[j][i];
+                //  swap matrix [i][j] to matrix [j][i]
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix [j][i];
+                matrix[j][i] = temp;
             }
         }
-        return ans;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -30,12 +45,16 @@ public class TransposeMatrix {
             for(int j=0 ; j<c ; j++){
                 matrix[i][j] = sc.nextInt();
             }
-            System.out.println("Input Matrix");
+        }
+        System.out.println("Input Matrix");
             printArray(matrix);
 
             System.out.println("Transpose of a matrix");
-            int ans[][] = findTranspose(matrix, r, c);
-            printArray(ans);
-        }
+            findTransposeInplace(matrix, r, c);
+            printArray(matrix);
+
+            // int ans[][] = findTranspose(matrix, r, c);
+            // printArray(ans);
+
     }
 }
